@@ -28,4 +28,16 @@ describe('Testes da função HandlerElephants', () => {
   it('retorna um número igual a 5 se a função é chamada com param popularity', () => {
     expect(handlerElephants('popularity')).toEqual(5);
   });
+
+  it('retorna um array com os dias se a função é chamada com param availability', () => {
+    expect(handlerElephants('availability')).toEqual(['Friday', 'Saturday', 'Sunday', 'Tuesday']);
+  });
+
+  it('função é passada com string como parâmetro', () => {
+    expect(handlerElephants(1)).toEqual('Parâmetro inválido, é necessário uma string');
+  });
+
+  it('retorna null caso função é chamada com parâmetro inexistente', () => {
+    expect(handlerElephants('dalessandro')).toEqual('null');
+  });
 });
