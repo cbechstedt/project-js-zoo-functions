@@ -34,7 +34,7 @@ describe('Testes da função getOpeningHours', () => {
       expect(actual).toBe(expected);
     }
   });
-  it('retorna erro se parâmetro hora não for número', () => {
+  it('retorna erro se hora ou minuto não for número', () => {
     {
       const actual = () => getOpeningHours('Friday', 'dez-PM');
       const expected = 'The hour should represent a number';
@@ -42,8 +42,28 @@ describe('Testes da função getOpeningHours', () => {
     }
     {
       const actual = () => getOpeningHours('Thursday', '05:0a-PM');
-      const expected = 'The hour should represent a number';
+      const expected = 'The minutes should represent a number';
       expect(actual).toThrow(expected);
     }
+  });
+  it('retorna erro se os minutos não existirem', () => {
+    const actual = () => getOpeningHours('Friday', '09:67-PM');
+    const expected = 'The minutes must be between 0 and 59';
+    expect(actual).toThrow(expected);
+  })
+  it('retorna erro se as horas não existirem', () => {
+    const actual = () => getOpeningHours('Friday', '15:30-PM');
+    const expected = 'The hour must be between 0 and 12';
+    expect(actual).toThrow(expected);
+  })
+  it('retorna erro se as abreviações AM ou PM não estiverem certas', () => {
+    const actual = () => getOpeningHours('Friday', '15:30-PN');
+    const expected = `The abbreviation must be 'AM' or 'PM'`;
+    expect(actual).toThrow(expected);
+  });
+  it('retorna erro se o dia for inválido', () => {
+    const actual = () => getOpeningHours('Apple', '15:30-PM');
+    const expected = 'The day must be valid. Example: Monday';
+    expect(actual).toThrow(expected);
   });
 });

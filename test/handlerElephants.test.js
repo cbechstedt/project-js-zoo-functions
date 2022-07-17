@@ -38,6 +38,6 @@ describe('Testes da função HandlerElephants', () => {
   });
 
   it('retorna null caso função é chamada com parâmetro inexistente', () => {
-    expect(handlerElephants('dalessandro')).toEqual('null');
+    expect(handlerElephants('dalessandro')).toEqual(null);
   });
 });
