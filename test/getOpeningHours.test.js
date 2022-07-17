@@ -50,15 +50,15 @@ describe('Testes da função getOpeningHours', () => {
     const actual = () => getOpeningHours('Friday', '09:67-PM');
     const expected = 'The minutes must be between 0 and 59';
     expect(actual).toThrow(expected);
-  })
+  });
   it('retorna erro se as horas não existirem', () => {
     const actual = () => getOpeningHours('Friday', '15:30-PM');
     const expected = 'The hour must be between 0 and 12';
     expect(actual).toThrow(expected);
-  })
+  });
   it('retorna erro se as abreviações AM ou PM não estiverem certas', () => {
     const actual = () => getOpeningHours('Friday', '15:30-PN');
-    const expected = `The abbreviation must be 'AM' or 'PM'`;
+    const expected = 'The abbreviation must be AM or PM';
     expect(actual).toThrow(expected);
   });
   it('retorna erro se o dia for inválido', () => {
